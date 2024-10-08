@@ -11,10 +11,10 @@ all: $(NAME)
 $(NAME): 
 
 %.o: %.c
-	$(CC) $(CCFLAGS) -
+	$(CC) $(CCFLAGS) $< $@
 
-clean: 
-
-fclean:
-
+clean:
+	rm -f $(OBJ) *.ghc
+fclean: clean
+	rm -f $(NAME)
 re: fclean all

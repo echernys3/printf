@@ -1,34 +1,5 @@
 #include "libft.h"
 
-int	ft_printf(const char *str, va_list arg)
-{
-	va_start(arg, str);
-	int	argcount;
-	int	i;
-	int	char_count;
-
-	argcount = 0;
-	while (str[i])
-	{.
-		if (*(str + i) == %)
-		{
-			printarg(str, arg, i, print_len)
-			i++;
-			argcount++;
-		}
-		else 
-			ft_putchar(*(str + i));
-		i++;
-		char_count;
-	}
-
-	va_end(arg);
-	if ()
-		return (-1);
-	return (char_count + print_len);
-}
-
-
 static int	printarg(const char *str, va_list arg, int i, int print_len)
 {
 		if (*(str + i + 1) == '%')
@@ -48,10 +19,36 @@ static int	printarg(const char *str, va_list arg, int i, int print_len)
 
 }
 
+int	ft_printf(const char *str, va_list arg)
+{
+	va_start(arg, str);
+	int	argcount;
+	int	i;
+	int	char_count;
+	int	print_len;
+
+	print_len = 0;
+	argcount = 0;
+	while (str[i])
+	{.
+		if (*(str + i) == %)
+		{
+			print_len  += printarg(str, arg, i, print_len);
+			i++;
+			argcount++;
+		}
+		else
+		{
+			ft_putchar(*(str + i));
+			char_count++;
+		}
+		i++;
+	}
+
+	va_end(arg);
+	if ()
+		return (-1);
+	return (char_count + print_len);
+}
 
 
-	int	*pos;
-
-	*pos = ft_strchr(str, %);
-	while (str[i] != *pos)
-		ft_putchar(str[i++]);	//Write first part of the string
