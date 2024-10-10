@@ -1,27 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: echernys <echernys@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/10 12:56:57 by echernys          #+#    #+#             */
-/*   Updated: 2024/10/10 13:07:23 by echernys         ###   ########.fr       */
+/*   Created: 2024/10/07 12:37:27 by echernys          #+#    #+#             */
+/*   Updated: 2024/10/07 12:55:22 by echernys         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef 	FT_PRINTF_H
-# define	FT_PRINTF_H
+#include "libft.h"
 
-# include	<stdlib.h>
-# include	<stdarg.h>
+void	ft_striteri(char *s, void (*f)(unsigned int, char*))
+{
+	unsigned int	index;
 
-int	ft_numlen(unsigned int n);
-int	ft_putchar(char c);
-
-int	ft_printf(const char *str, va_list arg);
-int	ft_print_ptr(const void *c, int print_len);
-int	ft_print_unsigned(unsigned int n);
-int	ft_print_hex(unsigned int n, const char format);
-
-#endif
+	index = 0;
+	while (s[index])
+	{
+		(*f)(index, &s[index]);
+		index++;
+	}
+}

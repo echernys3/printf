@@ -1,27 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: echernys <echernys@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/10 12:56:57 by echernys          #+#    #+#             */
-/*   Updated: 2024/10/10 13:07:23 by echernys         ###   ########.fr       */
+/*   Created: 2024/10/07 12:37:20 by echernys          #+#    #+#             */
+/*   Updated: 2024/10/08 11:52:42 by echernys         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef 	FT_PRINTF_H
-# define	FT_PRINTF_H
+#include "libft.h"
 
-# include	<stdlib.h>
-# include	<stdarg.h>
+char	*ft_strchr(const char *s, int c)
+{
+	char			*ptr;
+	int				i;
+	unsigned char	normalized_c;
 
-int	ft_numlen(unsigned int n);
-int	ft_putchar(char c);
-
-int	ft_printf(const char *str, va_list arg);
-int	ft_print_ptr(const void *c, int print_len);
-int	ft_print_unsigned(unsigned int n);
-int	ft_print_hex(unsigned int n, const char format);
-
-#endif
+	normalized_c = (unsigned char)(c % 256);
+	ptr = (char *)s;
+	if (normalized_c == '\0')
+		return (ptr + ft_strlen(s));
+	i = 0;
+	while (s[i] != normalized_c && s[i])
+		i++;
+	if (i >= ft_strlen(s))
+		return (NULL);
+	return (ptr + i);
+}

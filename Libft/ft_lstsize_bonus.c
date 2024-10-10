@@ -1,27 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_lstsize_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: echernys <echernys@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/10 12:56:57 by echernys          #+#    #+#             */
-/*   Updated: 2024/10/10 13:07:23 by echernys         ###   ########.fr       */
+/*   Created: 2024/10/07 12:36:51 by echernys          #+#    #+#             */
+/*   Updated: 2024/10/07 12:54:00 by echernys         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef 	FT_PRINTF_H
-# define	FT_PRINTF_H
+#include "libft.h"
 
-# include	<stdlib.h>
-# include	<stdarg.h>
+int	ft_lstsize(t_list *lst)
+{
+	unsigned int	counter;
 
-int	ft_numlen(unsigned int n);
-int	ft_putchar(char c);
-
-int	ft_printf(const char *str, va_list arg);
-int	ft_print_ptr(const void *c, int print_len);
-int	ft_print_unsigned(unsigned int n);
-int	ft_print_hex(unsigned int n, const char format);
-
-#endif
+	counter = 0;
+	if (!lst)
+		return (0);
+	while (lst != NULL)
+	{
+		lst = lst->next;
+		counter++;
+	}
+	return (counter);
+}

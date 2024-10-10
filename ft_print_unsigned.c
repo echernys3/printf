@@ -1,12 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_print_unsigned.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: echernys <echernys@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/10 12:49:12 by echernys          #+#    #+#             */
+/*   Updated: 2024/10/10 13:09:39 by echernys         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
-#include "libft.h"
 
 static char	*miniitoa(unsigned int n)
 {
 	char	*str;
 	int	n_len;
 
-	n_len = numlen(n);
+	n_len = ft_numlen(n);
 	str = malloc(sizeof(char) * (n_len + 1));
 	if (!str)
 		return (0);
@@ -32,7 +43,7 @@ int	ft_print_unsigned(unsigned int n)
 	{
 		str = miniitoa(n);
 		while(str[print_len])
-			putchar(str[print_len++]);
+			ft_putchar(str[print_len++]);
 		print_len--;
 		free(str);
 	}

@@ -1,27 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_lstadd_back_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: echernys <echernys@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/10 12:56:57 by echernys          #+#    #+#             */
-/*   Updated: 2024/10/10 13:07:23 by echernys         ###   ########.fr       */
+/*   Created: 2024/10/07 12:36:31 by echernys          #+#    #+#             */
+/*   Updated: 2024/10/07 12:42:49 by echernys         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef 	FT_PRINTF_H
-# define	FT_PRINTF_H
+#include "libft.h"
 
-# include	<stdlib.h>
-# include	<stdarg.h>
+void	ft_lstadd_back(t_list **lst, t_list *new)
+{
+	t_list	*currentlst;
 
-int	ft_numlen(unsigned int n);
-int	ft_putchar(char c);
-
-int	ft_printf(const char *str, va_list arg);
-int	ft_print_ptr(const void *c, int print_len);
-int	ft_print_unsigned(unsigned int n);
-int	ft_print_hex(unsigned int n, const char format);
-
-#endif
+	currentlst = *lst;
+	if (!new)
+		return ;
+	if (!(*lst))
+		*lst = new;
+	else
+	{
+		while (currentlst -> next != NULL)
+			currentlst = currentlst -> next;
+		currentlst->next = new;
+	}
+}

@@ -1,27 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: echernys <echernys@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/10 12:56:57 by echernys          #+#    #+#             */
-/*   Updated: 2024/10/10 13:07:23 by echernys         ###   ########.fr       */
+/*   Created: 2024/10/07 12:37:12 by echernys          #+#    #+#             */
+/*   Updated: 2024/10/07 12:37:13 by echernys         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef 	FT_PRINTF_H
-# define	FT_PRINTF_H
+#include "libft.h"
 
-# include	<stdlib.h>
-# include	<stdarg.h>
+void	ft_putnbr_fd(int n, int fd)
+{
+	long	num;
 
-int	ft_numlen(unsigned int n);
-int	ft_putchar(char c);
-
-int	ft_printf(const char *str, va_list arg);
-int	ft_print_ptr(const void *c, int print_len);
-int	ft_print_unsigned(unsigned int n);
-int	ft_print_hex(unsigned int n, const char format);
-
-#endif
+	num = n;
+	if (num < 0)
+	{
+		num = -num;
+		write(fd, "-", 1);
+	}
+	if (num > 9)
+	{
+		ft_putnbr_fd((num / 10), fd);
+		ft_putchar_fd((num % 10 + '0'), fd);
+	}
+	else
+		ft_putchar_fd((num % 10 + '0'), fd);
+}
+// 
+// int	main()
+// {
+// 	int	n = 0;
+// 	ft_putnbr_fd(n, 1);
+// }

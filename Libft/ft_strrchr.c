@@ -1,27 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: echernys <echernys@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/10 12:56:57 by echernys          #+#    #+#             */
-/*   Updated: 2024/10/10 13:07:23 by echernys         ###   ########.fr       */
+/*   Created: 2024/10/07 12:37:52 by echernys          #+#    #+#             */
+/*   Updated: 2024/10/07 17:26:27 by echernys         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef 	FT_PRINTF_H
-# define	FT_PRINTF_H
+#include "libft.h"
 
-# include	<stdlib.h>
-# include	<stdarg.h>
+char	*ft_strrchr(const char *s, int c)
+{
+	const char		*ptr;
+	unsigned char	normalized_c;
 
-int	ft_numlen(unsigned int n);
-int	ft_putchar(char c);
-
-int	ft_printf(const char *str, va_list arg);
-int	ft_print_ptr(const void *c, int print_len);
-int	ft_print_unsigned(unsigned int n);
-int	ft_print_hex(unsigned int n, const char format);
-
-#endif
+	normalized_c = (unsigned char)(c % 256);
+	ptr = s + ft_strlen(s);
+	if (normalized_c == '\0')
+		return ((char *)ptr);
+	while (ptr != s)
+	{
+		if (*(ptr - 1) == normalized_c)
+			return ((char *)(ptr - 1));
+		ptr--;
+	}
+	return (NULL);
+}
+// Tiens ça la francinette, MODULO 256 FOR THE WIN
